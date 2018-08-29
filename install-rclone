@@ -1,0 +1,27 @@
+#! /bin/sh
+
+set -e
+# Any subsequent(*) commands which fail will cause the shell script to exit immediately
+
+cd /tmp
+wget http://downloads.rclone.org/rclone-current-linux-amd64.zip
+
+unzip rclone-current-linux-amd64.zip
+cd rclone-*-amd64
+
+echo "copying binary file"
+sudo cp rclone /usr/sbin/
+sudo chown root:root /usr/sbin/rclone
+sudo chmod 755 /usr/sbin/rclone
+
+echo "installing manpage"
+sudo mkdir -p /usr/local/share/man/man1
+sudo cp rclone.1 /usr/local/share/man/man1/
+sudo mandb
+#copy config
+
+echo "installing autocomplete"
+sudo rclone genautocomplete
+
+echo 'done installing rclone'
+exit 0

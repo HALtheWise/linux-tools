@@ -1,0 +1,35 @@
+#! /bin/sh
+
+echo 'Downloading file'
+notify-send -i keepass2 'KeePass' 'Downloading file'
+rclone copy drive:Other/Passwords.kdbx /tmp
+
+if [ $? != 0 ]
+then
+	notify-send -i keepass2 'KeePass' 'Fallback copy opened'
+	keepass2 ~/Passwords-ro.kdbx
+	exit 0
+fi	
+
+# copying to home dir for read-only offline use
+chmod +w ~/Passwords-ro.kdbx
+cp /tmp/Passwords.kdbx ~/Passwords-ro.kdbx
+chmod -w ~/Passwords-ro.kdbx
+
+keepass2 /tmp/Passwords.kdbx
+
+# copy back online (TODO: only if changed)
+echo 'Uploading new file'
+rclone copy --update --checksum /tmp/Passwords.kdbx drive:Other/
+
+if [ $? -eq 0 ]
+then
+	notify-send -i keepass2 'KeePass' 'File upload succeeded'
+	chmod +w ~/Passwords-ro.kdbx
+	cp /tmp/Passwords.kdbx ~/Passwords-ro.kdbx
+	chmod -w ~/Passwords-ro.kdbx
+else
+	notify-send -i keepass2 'KeePass' 'File upload failed'
+fi
+
+rm /tmp/Passwords.kdbx
