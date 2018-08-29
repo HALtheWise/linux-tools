@@ -2,8 +2,13 @@
 
 # scripts
 sudo cp keepass-gdrive /usr/local/bin
+cp configs/password-file.desktop /home/eric/.local/share/applications/
+
+mkdir -p ~/makerbot/Things
+cp configs/run.sh ~/makerbot
 
 # Chrome
+sudo apt-get update
 sudo apt-get install -f
 cd Downloads/
 wget 'https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb'
@@ -43,23 +48,13 @@ sudo apt-get install -y docker-ce
 sudo usermod -aG docker $(whoami)
 
 ## Makerware
-mkdir -p ~/makerbot/Things
-cp configs/run.sh ~/makerbot
 sudo ./install-makerware.sh
 
 # Go
 google-chrome https://golang.org/doc/install
 
-# Olin sources
-#sudo cp -p /etc/apt/sources.list /etc/apt/sources.list.orig
-#echo "\ndeb http://linux.olin.edu/ubuntu/olin/ stable multiverse" >> /etc/apt/sources.list
-#wget -O /tmp/olin.key http://linux.olin.edu/ubuntu/files/apt/olin.key
-#sudo apt-key add /tmp/olin.key
-#rm /tmp/olin.key
-#sudo apt-get update
-
 # Misc software
-sudo apt-get install -y audacity inkscape gimp pinta #matlab
+sudo apt-get install -y audacity inkscape gimp pinta terminator
 google-chrome http://www.syntevo.com/smartgit/download
 google-chrome http://wikis.olin.edu/linux/doku.php?id=nvidia
 google-chrome http://wikis.olin.edu/linux/doku.php?id=printing
@@ -68,5 +63,6 @@ google-chrome http://user.wolfram.com/
 google-chrome http://wiki.ros.org/ROS/Installation
 google-chrome https://www.jetbrains.com/go/download/#section=linux
 google-chrome https://www.jetbrains.com/pycharm/
+google-chrome https://download.visicut.org/
 
 # TODO: Matlab
