@@ -4,9 +4,6 @@
 sudo cp keepass-gdrive /usr/local/bin
 cp configs/password-file.desktop /home/eric/.local/share/applications/
 
-mkdir -p ~/makerbot/Things
-cp configs/run.sh ~/makerbot
-
 # Chrome
 sudo apt-get update
 sudo apt-get install -f
@@ -46,9 +43,6 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 sudo apt-get update
 sudo apt-get install -y docker-ce
 sudo usermod -aG docker $(whoami)
-
-## Makerware
-sudo ./install-makerware.sh
 
 # Go
 google-chrome https://golang.org/doc/install
