@@ -53,8 +53,13 @@ sudo ./install-makerware.sh
 # Go
 google-chrome https://golang.org/doc/install
 
+# Fish
+sudo apt-add-repository ppa:fish-shell/release-2
+sudo apt-get update
+sudo apt-get install fish
+
 # Misc software
-sudo apt-get install -y audacity inkscape gimp pinta terminator
+sudo apt-get install -y audacity inkscape gimp pinta terminator pdfshuffler
 google-chrome http://www.syntevo.com/smartgit/download
 google-chrome http://wikis.olin.edu/linux/doku.php?id=nvidia
 google-chrome http://wikis.olin.edu/linux/doku.php?id=printing
@@ -64,5 +69,11 @@ google-chrome http://wiki.ros.org/ROS/Installation
 google-chrome https://www.jetbrains.com/go/download/#section=linux
 google-chrome https://www.jetbrains.com/pycharm/
 google-chrome https://download.visicut.org/
+google-chrome https://etcher.io/
+
+# Keybase
+curl -O https://prerelease.keybase.io/keybase_amd64.deb
+sudo dpkg -i keybase_amd64.deb
+sudo apt-get install -y -f
 
 # TODO: Matlab
